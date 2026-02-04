@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Postman Mini Blog — The Lightweight API Testing Tool</title>
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+/* ===== Root Theme ===== */
+:root {
+  --bg: #070b16;
+  --card: rgba(20, 28, 60, 0.75);
+  --accent: #5df2ff;
+  --accent2: #9b7bff;
+  --text: #e6ebff;
+  --muted: #9aa3c7;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, sans-serif;
+  background: radial-gradient(circle at top, #10173a 0%, var(--bg) 60%);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+/* ===== Header ===== */
+header {
+  padding: 1.5rem 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  backdrop-filter: blur(14px);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.logo {
+  font-family: Orbitron;
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+nav a {
+  color: var(--muted);
+  text-decoration: none;
+  margin-left: 2rem;
+  font-weight: 500;
+}
+
+nav a:hover { color: var(--accent); }
+
+/* ===== Blog Layout ===== */
+.blog-container {
+  max-width: 900px;
+  margin: 5rem auto;
+  padding: 0 2rem;
+}
+
+.blog-title {
+  font-family: Orbitron;
+  font-size: clamp(2.4rem, 5vw, 3.4rem);
+  background: linear-gradient(90deg, #fff, var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1rem;
+}
+
+.blog-meta {
+  color: var(--muted);
+  margin-bottom: 2.5rem;
+  font-size: 0.95rem;
+}
+
+.blog-card {
+  background: var(--card);
+  border-radius: 22px;
+  padding: 2.5rem;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+}
+
+.blog-card h2, .blog-card h3 {
+  font-family: Orbitron;
+  color: var(--accent);
+  margin-top: 2rem;
+}
+
+.blog-card p {
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: 1.05rem;
+}
+
+.blog-card ul {
+  color: var(--muted);
+  line-height: 1.7;
+  padding-left: 1.2rem;
+}
+
+.blog-card li {
+  margin-bottom: 0.6rem;
+}
+
+/* CTA */
+.final-cta {
+  text-align: center;
+  margin: 5rem auto;
+}
+
+.btn {
+  padding: 0.9rem 1.6rem;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: 0.25s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.btn.primary {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #000;
+  box-shadow: 0 0 30px rgba(93,242,255,0.35);
+}
+
+.btn.primary:hover {
+  transform: translateY(-2px) scale(1.02);
+}
+
+.btn.ghost {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid rgba(93,242,255,0.4);
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: var(--muted);
+}
+
+/* Particles */
+#bg-particles {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+}
+
+/* Scroll Reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px) scale(0.98);
+  transition: 0.9s cubic-bezier(.2,.8,.2,1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+header.scrolled {
+  background: rgba(7,11,22,0.7);
+}
+
+@media (max-width: 900px) {
+  header { padding: 1.2rem 2rem; }
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="bg-particles"></canvas>
+
+<header>
+  <div class="logo">Postman Mini</div>
+  <nav>
+    <a href="/">Home</a>
+    <a href="https://apra1605.github.io/Postman-mini/" target="_blank">GitHub</a>
+  </nav>
+</header>
+
+<main class="blog-container reveal">
+
+  <h1 class="blog-title">Postman Mini — The Lightweight API Testing Tool Developers Have Been Waiting For</h1>
+  <div class="blog-meta">Blog Post • Open Source • API Testing</div>
+
+  <div class="blog-card">
+
+    <p>
+      API testing is a core part of modern development — but most tools built for it are heavy, slow, or overloaded with features you don’t need for quick debugging. That’s why <strong>Postman Mini</strong> was created: a fast, lightweight, browser‑native API testing extension designed for developers who want instant results without leaving their workflow.
+    </p>
+
+    <h2>What Is Postman Mini?</h2>
+    <p>
+      <strong>Postman Mini</strong> is an open‑source API testing extension for Chromium browsers including Chrome, Edge, Brave, Opera GX, and Vivaldi. It lets you send HTTP requests instantly, inspect JSON responses, view latency, and debug endpoints — all without opening a separate application.
+    </p>
+
+    <h2>Why Developers Need a Lightweight Postman Alternative</h2>
+    <p>
+      Traditional API clients like Postman and Insomnia are powerful, but they come with drawbacks:
+    </p>
+    <ul>
+      <li>Slow startup times</li>
+      <li>High memory usage</li>
+      <li>Complex interfaces</li>
+      <li>Too many features for simple tasks</li>
+    </ul>
+    <p>
+      When you just need to test a single endpoint, opening a full desktop app can feel like overkill. Postman Mini solves this by giving you a clean, minimal interface that loads instantly.
+    </p>
+
+    <h2>Key Features of Postman Mini</h2>
+    <h3>⚡ Ultra‑Lightweight API Testing</h3>
+    <p>No installers. No bloat. Just fast, clean API testing directly inside your browser.</p>
+
+    <h3>📊 Built‑In Latency Insights</h3>
+    <p>Every request displays response time, helping you evaluate backend performance instantly.</p>
+
+    <h3>🧭 Works on All Chromium Browsers</h3>
+    <p>Chrome, Edge, Brave, Opera GX, Vivaldi — Postman Mini works everywhere.</p>
+
+    <h3>🌍 Fully Open Source</h3>
+    <p>Developers can inspect the code, request features, and contribute improvements on GitHub.</p>
+
+    <h2>Who Is Postman Mini For?</h2>
+    <ul>
+      <li>Frontend developers testing REST endpoints</li>
+      <li>Backend developers debugging APIs</li>
+      <li>Students learning HTTP and JSON</li>
+      <li>QA testers validating responses</li>
+      <li>Anyone who wants a fast, simple API testing tool</li>
+    </ul>
+
+    <h2>How Postman Mini Improves Your Workflow</h2>
+    <p><strong>1. Faster Development Cycles</strong><br>No window switching. No waiting. Your API tester is always one click away.</p>
+    <p><strong>2. Cleaner Debugging</strong><br>A minimal UI keeps your focus on what matters: URL → Method → Headers → Response.</p>
+    <p><strong>3. Perfect for Quick Checks</strong><br>Testing login routes, JSON responses, or CORS issues becomes instant.</p>
+
+    <h2>Is Postman Mini Free?</h2>
+    <p>Yes — Postman Mini is <strong>100% free and open source</strong>.</p>
+
+    <h2>Install Postman Mini</h2>
+    <p>Get the extension from the Microsoft Edge Add‑ons Store:</p>
+    <p><a href="https://microsoftedge.microsoft.com/addons/detail/postmanmini/gkibeciefgnicfhkjhjipibbhpnhjamn" class="btn primary" target="_blank">Install on Edge</a></p>
+
+    <h2>Future Roadmap</h2>
+    <ul>
+      <li>Saved request history</li>
+      <li>Environment variables</li>
+      <li>Import/export support</li>
+      <li>More HTTP methods</li>
+      <li>Theme customization</li>
+    </ul>
+
+    <h2>Final Thoughts</h2>
+    <p>
+      If you’re tired of heavy API testing tools slowing down your workflow, Postman Mini is the lightweight, fast, and elegant alternative you’ve been waiting for. It’s simple enough for beginners, powerful enough for professionals, and fast enough for everyone.
+    </p>
+
+  </div>
+
+  <section class="final-cta reveal">
+    <h2 style="font-family:Orbitron;font-size:2.4rem;">Try Postman Mini Today</h2>
+    <div class="cta-row" style="justify-content:center; margin-top:1.5rem;">
+      <a class="btn primary" href="https://microsoftedge.microsoft.com/addons/detail/postmanmini/gkibeciefgnicfhkjhjipibbhpnhjamn" target="_blank">Install Extension</a>
+      <a class="btn ghost" href="https://github.com/Apra1605/Postman-mini-extension" target="_blank">Star on GitHub</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>Built for developers • Open Source • Postman Mini</p>
+</footer>
+
+<script>
+/* ===== Particles Background ===== */
+const canvas = document.getElementById('bg-particles');
+const ctx = canvas.getContext('2d');
+let particles = [];
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resize);
+resize();
+
+for (let i = 0; i < 90; i++) {
+  particles.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    r: Math.random() * 2 + 0.6,
+    vx: (Math.random() - 0.5) * 0.4,
+    vy: (Math.random() - 0.5) * 0.4
+  });
+}
+
+function animateParticles() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  for (const p of particles) {
+    p.x += p.vx;
+    p.y += p.vy;
+    if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+    if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(93,242,255,0.35)';
+    ctx.fill();
+  }
+  requestAnimationFrame(animateParticles);
+}
+animateParticles();
+
+/* Header Blur on Scroll */
+window.addEventListener('scroll', () => {
+  document.querySelector('header').classList.toggle('scrolled', window.scrollY > 40);
+});
+
+/* Scroll Reveal */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
